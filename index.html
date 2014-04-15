@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>warpech-display-router</title>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/0.2.2/platform.js"></script>
+  <link rel="import" href="warpech-display-router.html">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<h1><a href="https://github.com/warpech/warpech-display-router">warpech-display-router</a></h1>
+
+<p>For API see the <a href="https://github.com/warpech/warpech-display-router">README.md</a></p>
+
+<h2>Sample usage</h2>
+
+Below links change the page using HTML5 History API (they don't exist really):
+
+<ul id="menu">
+  <li><a href="index.html">Home Page</a></li>
+  <li><a href="about_us.html">About Us</a></li>
+  <li><a href="contact.html">Contact Page</a></li>
+</ul>
+
+<script>
+  document.getElementById('menu').addEventListener('click', function (event) {
+    if (event.target.href) {
+      history.pushState(null, null, event.target.href);
+      event.preventDefault();
+    }
+  });
+</script>
+
+<h2>Page output</h2>
+
+<div id="home-page">This is my Home Page text</div>
+<div class="different-page">This is my About Us text</div>
+<div class="different-page contact">This is my Contact details</div>
+
+<warpech-display-router>
+  <warpech-display-route match-url="\/warpech-display-router\/$|\/index.html" display-selector="#home-page"></warpech-display-route>
+  <warpech-display-route match-url="about_us\.html" display-selector="#home-page + .different-page"></warpech-display-route>
+  <warpech-display-route match-url="contact\.html" display-selector=".different-page.contact"></warpech-display-route>
+</warpech-display-router>
+
+</body>
+</html>

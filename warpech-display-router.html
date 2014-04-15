@@ -1,0 +1,56 @@
+<script>
+  (function (global) {
+    var pushState = global.history.pushState;
+    global.history.pushState = function (state) {
+      var out = pushState.apply(history, arguments);
+      var event = new CustomEvent("warpech-display-router-pushstate");
+      global.dispatchEvent(event);
+      return out;
+    }
+
+    var WarpechDisplayRoutePrototype = Object.create(HTMLElement.prototype);
+    WarpechDisplayRoutePrototype.checkUrlMatching = function () {
+      if (window.location.href.match(this.matchUrl)) {
+        this.applyDisplaySelector(true);
+      }
+      else {
+        this.applyDisplaySelector(false);
+      }
+    };
+    WarpechDisplayRoutePrototype.applyDisplaySelector = function (show) {
+      var selector = this.getAttribute('display-selector');
+      if (selector) {
+        var elem = document.querySelector(selector);
+        if (elem) {
+          if (show) {
+            elem.style.display = "";
+          }
+          else {
+            elem.style.display = "none";
+          }
+        }
+      }
+    };
+    WarpechDisplayRoutePrototype.attributeChangedCallback = function (attributeName, oldVal, newVal) {
+      if (attributeName == 'match-url') {
+        this.matchUrl = new RegExp(newVal);
+      }
+    };
+    WarpechDisplayRoutePrototype.createdCallback = function () {
+      this.attributeChangedCallback('match-url', '', this.getAttribute('match-url'));
+
+      var that = this;
+      global.addEventListener('warpech-display-router-pushstate', function () {
+        that.checkUrlMatching();
+      });
+      global.addEventListener('popstate', function (event) {
+        that.checkUrlMatching();
+      });
+      that.checkUrlMatching();
+    };
+
+    global.WarpechDisplayRouteElement = document.registerElement('warpech-display-route', {
+      prototype: WarpechDisplayRoutePrototype
+    });
+  })(window);
+</script>
