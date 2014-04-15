@@ -1,0 +1,8 @@
+{
+  "name": "warpech-display-router",
+  "version": "0.1.0",
+  "main": ["warpech-display-router.html"],
+  "keywords": [
+    "web-components"
+  ]
+}
