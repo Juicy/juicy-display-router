@@ -24,6 +24,7 @@
         if (elem) {
           if (show) {
             elem.style.display = "";
+            elem.dispatchEvent(new CustomEvent("resize",{bubbles: false}));
           }
           else {
             elem.style.display = "none";
