@@ -34,7 +34,7 @@
     };
     WarpechDisplayRoutePrototype.attributeChangedCallback = function (attributeName, oldVal, newVal) {
       if (attributeName == 'match-path') {
-        this.matchPath = new RegExp(newVal);
+        this.matchPath = new RegExp(newVal, "i");
       }
     };
     WarpechDisplayRoutePrototype.attachedCallback = function () { //needs to be 'attached' not 'created', otherwise does not work with Polymer's TemplateBinding in attributes
