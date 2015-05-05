@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>warpech-display-router</title>
+  <title>juicy-display-router</title>
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.6.1/webcomponents.min.js"></script>
-  <link rel="import" href="warpech-display-router.html">
+    <link rel="import" href="juicy-display-router.html">
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<h1><a href="https://github.com/warpech/warpech-display-router">warpech-display-router</a></h1>
+<h1><a href="https://github.com/Juicy/juicy-display-router">juicy-display-router</a></h1>
 
-<p>For API see the <a href="https://github.com/warpech/warpech-display-router">README.md</a></p>
+<p>For API see the <a href="https://github.com/Juicy/juicy-display-router">README.md</a></p>
 
 <h2>Sample usage</h2>
 
@@ -41,11 +41,11 @@ Below links change the page using HTML5 History API (they don't exist really):
 <div class="different-page">This is my About Us text</div>
 <div class="different-page contact">This is my Contact details</div>
 
-<warpech-display-router>
-  <warpech-display-route match-path="\/warpech-display-router\/$|\/index.html" display-selector="#home-page"></warpech-display-route>
-  <warpech-display-route match-path="about_us\.html" display-selector="#home-page + .different-page"></warpech-display-route>
-  <warpech-display-route match-path="contact\.html" display-selector=".different-page.contact"></warpech-display-route>
-</warpech-display-router>
+<juicy-display-router>
+  <juicy-display-route match-path="\/juicy-display-router\/$|\/index.html" display-selector="#home-page"></juicy-display-route>
+  <juicy-display-route match-path="about_us\.html" display-selector="#home-page + .different-page"></juicy-display-route>
+  <juicy-display-route match-path="contact\.html" display-selector=".different-page.contact"></juicy-display-route>
+</juicy-display-router>
 
 </body>
 </html>

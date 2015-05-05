@@ -1,7 +1,7 @@
 {
-  "name": "warpech-display-router",
+  "name": "juicy-display-router",
   "version": "0.1.2",
-  "main": ["warpech-display-router.html"],
+  "main": ["juicy-display-router.html"],
   "keywords": [
     "web-components"
   ]

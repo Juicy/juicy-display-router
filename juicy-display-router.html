@@ -1,19 +1,19 @@
 <script>
   /**
-   * warpech-display-router 0.1.2
+   * juicy-display-router 0.1.2
    * MIT license
    */
   (function (global) {
     var pushState = global.history.pushState;
     global.history.pushState = function (state) {
       var out = pushState.apply(history, arguments);
-      var event = new CustomEvent("warpech-display-router-pushstate");
+      var event = new CustomEvent("juicy-display-router-pushstate");
       global.dispatchEvent(event);
       return out;
     };
 
-    var WarpechDisplayRoutePrototype = Object.create(HTMLElement.prototype);
-    WarpechDisplayRoutePrototype.checkMatching = function () {
+    var JuicyDisplayRoutePrototype = Object.create(HTMLElement.prototype);
+    JuicyDisplayRoutePrototype.checkMatching = function () {
       if (window.location.pathname.match(this.matchPath)) {
         this.applyDisplaySelector(true);
       }
@@ -21,7 +21,7 @@
         this.applyDisplaySelector(false);
       }
     };
-    WarpechDisplayRoutePrototype.applyDisplaySelector = function (show) {
+    JuicyDisplayRoutePrototype.applyDisplaySelector = function (show) {
       var selector = this.getAttribute('display-selector');
       if (selector) {
         var elem = document.querySelector(selector);
@@ -36,21 +36,21 @@
         }
       }
     };
-    WarpechDisplayRoutePrototype.attributeChangedCallback = function (attributeName, oldVal, newVal) {
+    JuicyDisplayRoutePrototype.attributeChangedCallback = function (attributeName, oldVal, newVal) {
       if (attributeName == 'match-path') {
         this.matchPath = new RegExp(newVal, "i");
       }
     };
-    WarpechDisplayRoutePrototype.attachedCallback = function () { //needs to be 'attached' not 'created', otherwise does not work with Polymer's TemplateBinding in attributes
+    JuicyDisplayRoutePrototype.attachedCallback = function () { //needs to be 'attached' not 'created', otherwise does not work with Polymer's TemplateBinding in attributes
       this.attributeChangedCallback('match-path', '', this.getAttribute('match-path'));
 
-      global.addEventListener('warpech-display-router-pushstate', this.checkMatching.bind(this));
+      global.addEventListener('juicy-display-router-pushstate', this.checkMatching.bind(this));
       global.addEventListener('popstate', this.checkMatching.bind(this));
       this.checkMatching();
     };
 
-    global.WarpechDisplayRouteElement = document.registerElement('warpech-display-route', {
-      prototype: WarpechDisplayRoutePrototype
+    global.JuicyDisplayRouteElement = document.registerElement('juicy-display-route', {
+      prototype: JuicyDisplayRoutePrototype
     });
   })(window);
 </script>
