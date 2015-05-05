@@ -1,6 +1,6 @@
 {
   "name": "juicy-display-router",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "main": ["juicy-display-router.html"],
   "keywords": [
     "web-components"
