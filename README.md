@@ -5,7 +5,7 @@ A Custom Element to switch visible elements based on current window location
 
 ### Demo
 
-[Click here to see a live demo](http://warpech.github.io/warpech-display-router)
+[Click here to see a live demo](http://juicy.github.io/juicy-display-router/)
 
 ### Usage
 
