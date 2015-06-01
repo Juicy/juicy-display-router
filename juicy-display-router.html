@@ -23,6 +23,10 @@
     };
     JuicyDisplayRoutePrototype.applyDisplaySelector = function (show) {
       var selector = this.getAttribute('display-selector');
+      if (/[.]$/gi.test(selector)) {
+          console.error("Invalid selector value [", selector, "]. Workspace is missing AppName!");
+          return;
+      }
       if (selector) {
         var elem = document.querySelector(selector);
         if (elem) {
