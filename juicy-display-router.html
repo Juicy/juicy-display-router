@@ -22,23 +22,28 @@
       }
     };
     JuicyDisplayRoutePrototype.applyDisplaySelector = function (show) {
-      var selector = this.getAttribute('display-selector');
-      if (/[.]$/gi.test(selector)) {
-          console.error("Invalid selector value [", selector, "]. Workspace is missing AppName!");
-          return;
-      }
-      if (selector) {
-        var elem = document.querySelector(selector);
-        if (elem) {
-          if (show) {
-            elem.style.display = "";
-            elem.dispatchEvent(new CustomEvent("resize",{bubbles: false}));
-          }
-          else {
-            elem.style.display = "none";
-          }
+        var selector = this.getAttribute('display-selector');
+        if (selector) {
+            var elem = null;
+
+            try {
+                elem = document.querySelector(selector);
+            } catch (ex) {
+            }
+
+            if (!elem) {
+                throw new Error("juicy-display-router: could not find any DOM element for given display-selector value: " + selector);
+            }
+
+            if (show) {
+                elem.style.display = "";
+                elem.dispatchEvent(new CustomEvent("resize", { bubbles: false }));
+            } else {
+                elem.style.display = "none";
+            }
+        } else {
+            throw new Error("juicy-display-router: display-selector cannot be empty");
         }
-      }
     };
     JuicyDisplayRoutePrototype.attributeChangedCallback = function (attributeName, oldVal, newVal) {
       if (attributeName == 'match-path') {
