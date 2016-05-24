@@ -31,7 +31,7 @@ Specifies the CSS selector that will be used to show/hide an element.
 ### How it works
 
 - For each **juicy-display-route**, the window URL is checked against the regular expression provided in the `match-path` attribute.
-- If there is a match, the query in `display-selector` is performed against DOM and the first found element is set with `display: block`. 
+- If there is a match, the query in `display-selector` is performed against DOM and the first found element is set with `display: block`.
 - If there is no match, the query in `display-selector` is performed against DOM and the first found element is set with `display: none`.
 
 ## License
