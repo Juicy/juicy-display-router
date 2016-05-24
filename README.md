@@ -34,6 +34,6 @@ Specifies the CSS selector that will be used to show/hide an element.
 - If there is a match, the query in `display-selector` is performed against DOM and the first found element is set with `display: block`. 
 - If there is no match, the query in `display-selector` is performed against DOM and the first found element is set with `display: none`.
 
-### License
+## License
 
 MIT
